@@ -61,8 +61,8 @@ def generate_tv_cartoon(script_text, style_choice):
         for i, line in enumerate(lines):
             if ":" in line:
                 parts = line.split(":", 1)
-                char_raw = parts.strip().capitalize()
-                dialogue = parts.strip()
+                char_raw = parts[0].strip().capitalize()
+                dialogue = parts[1].strip()
                 char_name = (
                     char_raw if char_raw in CHARACTER_VOICES else "Narrator"
                 )
