@@ -24,7 +24,7 @@ async def make_voice(text, char_name, out_path):
 
 
 def make_cartoon_frame(dialogue, char_name, style, scene_num, out_img):
-    prompt = f"{style}, {char_name} speaking in a vibrant cartoon scene, {dialogue}, expressive face, cinematic lighting, 8k"
+    prompt = f"{style}, {char_name} speaking in a vibrant cartoon scene, expressive face, cinematic lighting, 8k"
     encoded = urllib.parse.quote(prompt)
     url = f"https://pollinations.ai{encoded}?width=1280&height=720&nologo=true&seed={scene_num+100}"
 
@@ -38,7 +38,7 @@ def make_cartoon_frame(dialogue, char_name, style, scene_num, out_img):
 
     draw = ImageDraw.Draw(img, "RGBA")
     draw.rectangle([(50, 530), (1230, 690)], fill=(10, 15, 30, 210))
-    draw.rectangle([(65, 542), (240, 578)], fill=(225, 29, 72, 255))
+    draw.rectangle([(65, 542), (260, 578)], fill=(225, 29, 72, 255))
     draw.text((85, 552), f"{char_name.upper()}", fill=(255, 255, 255))
 
     wrapped = textwrap.fill(dialogue, width=65)
@@ -59,8 +59,8 @@ def generate_tv_cartoon(script_text, style_choice, progress=gr.Progress()):
 
         if ":" in line:
             parts = line.split(":", 1)
-            char_raw = parts.strip().capitalize()
-            dialogue = parts.strip()
+            char_raw = parts[0].strip().capitalize()
+            dialogue = parts[1].strip()
             char_name = (
                 char_raw if char_raw in CHARACTER_VOICES else "Narrator"
             )
