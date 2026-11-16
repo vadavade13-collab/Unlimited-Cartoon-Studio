@@ -26,7 +26,7 @@ async def make_voice(text, char_name, out_path):
 def make_cartoon_frame(dialogue, char_name, style, scene_num, out_img):
     prompt = f"{style}, {char_name} speaking in a vibrant cartoon scene, expressive face, cinematic lighting, 8k"
     encoded = urllib.parse.quote(prompt)
-    url = f"https://pollinations.ai{encoded}?width=1280&height=720&nologo=true&seed={scene_num+100}"
+    url = f"https://pollinations.ai/prompt/{encoded}?width=1280&height=720&nologo=true&seed={scene_num+100}"
 
     try:
         res = requests.get(url, timeout=25)
